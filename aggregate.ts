@@ -44,8 +44,11 @@ for (
 
 Deno.close(file.rid);
 
+// notification cluster migration was done before 2pm 22 nov
+const migrationDate = new Date('2022-11-22T06:00:00.000Z')
+
 const duplicateComments = Object.entries(aggregations).filter(([_, value]) =>
-  value?.count > 1
+  value?.count > 1 && new Date(value.comment?.createdAt).getTime() > migrationDate.getTime()
 );
 
 console.dir(duplicateComments, { depth: Infinity });
