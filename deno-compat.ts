@@ -1,7 +1,10 @@
 // deno-lint-ignore-file
+// @ts-ignore
 
 if (!globalThis.Deno) {
+  // @ts-ignore
   const fs = await import("fs");
+  // @ts-ignore
   globalThis.Deno = {};
   globalThis.Deno.open = function openFile(path): any {
     const file = fs.readFileSync(path);
